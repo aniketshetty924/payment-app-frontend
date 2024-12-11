@@ -1,0 +1,109 @@
+/* Navbar Styling */
+.navbar {
+  background: linear-gradient(
+    to right,
+    #4c51bf,
+    #5a67d8
+  ); /* Gradient background */
+  color: white;
+  padding: 1rem 2rem; /* Vertical and horizontal padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for the navbar */
+}
+
+/* Container for navbar content */
+.navbarContainer {
+  max-width: 1200px; /* Maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex;
+  justify-content: space-between; /* Space out the left and right sections */
+  align-items: center; /* Vertically center the content */
+  padding: 0 2rem; /* Horizontal padding */
+}
+
+/* Left section with Back and Forward buttons */
+.navbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Space between the buttons */
+  margin-right: auto; /* Push everything else to the right */
+  justify-content: flex-start; /* Align the buttons to the extreme left */
+}
+
+/* Styling for Back and Forward buttons */
+.navbarButton {
+  background-color: #2d3748; /* Dark background for buttons */
+  padding: 0.5rem 1.25rem; /* Vertical and horizontal padding */
+  border-radius: 0.375rem; /* Rounded corners */
+  font-size: 1rem; /* Font size */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor for click */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Hover effect for Back and Forward buttons */
+.navbarButton:hover {
+  background-color: #4a5568; /* Darker shade on hover */
+}
+
+/* Center section (for the navbar title) */
+.navbarCenter {
+  flex-grow: 1; /* Allow this section to take up available space */
+  display: flex;
+  justify-content: center; /* Center the navbar title */
+}
+
+/* Title styling */
+.navbarTitle {
+  font-size: 2rem; /* Large text for the navbar title */
+  font-weight: 700; /* Bold font weight */
+  letter-spacing: 0.1em; /* Slightly spaced letters */
+  color: white; /* White color for title */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Links section on the right */
+.navbarLinks {
+  display: none; /* Hidden on small screens */
+  gap: 2rem; /* Space between the links */
+}
+
+/* Styling for each link */
+.navbarLinks a {
+  color: white; /* White text for links */
+  padding: 0.75rem 1.5rem; /* Padding for each link */
+  border-radius: 0.375rem; /* Rounded corners */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s; /* Smooth transition for background */
+}
+
+/* Hover effect for navbar links */
+.navbarLinks a:hover {
+  background-color: #4c51bf; /* Background color change on hover */
+}
+
+/* Logout button styling */
+.navbarLogout {
+  background-color: #e53e3e; /* Red background */
+  padding: 0.75rem 1.5rem; /* Padding for the logout button */
+  border-radius: 0.375rem; /* Rounded corners */
+  margin-left: auto; /* Push it to the right */
+  font-size: 1rem; /* Font size */
+  color: white; /* White text */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor for click */
+  transition: background-color 0.3s; /* Smooth transition for background */
+}
+
+/* Hover effect for logout button */
+.navbarLogout:hover {
+  background-color: #c53030; /* Darker red on hover */
+}
+
+/* Media query for larger screens (tablet and above) */
+@media (min-width: 1024px) {
+  .navbarLinks {
+    display: flex; /* Display links as a flex container */
+    align-items: center; /* Vertically center the links */
+  }
+}

@@ -1,0 +1,87 @@
+.table-container {
+  width: 100%; /* Ensure the table container spans the full width */
+  margin: 20px auto;
+  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  display: block; /* Ensure block layout */
+}
+
+/* General table styling */
+.custom-table {
+  width: 100%; /* Use full available width */
+  border-collapse: collapse;
+  background-color: #f5fffa;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  table-layout: fixed; /* Columns have equal width unless content is larger */
+}
+
+/* Header styling */
+.custom-table-header {
+  background-color: #008080;
+  color: white;
+  text-align: left;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: 1px solid #ddd;
+  white-space: nowrap; /* Keep headers on one line */
+}
+
+/* Cell styling */
+.custom-table-cell {
+  padding: 10px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  color: #4a4a4a;
+  white-space: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflowed content */
+}
+
+/* Adjust row styling */
+.custom-table-row:nth-child(even) {
+  background-color: #e8f5f5;
+}
+
+.custom-table-row:nth-child(odd) {
+  background-color: #f5fffa;
+}
+
+.custom-table-row:hover {
+  background-color: #dff5f5;
+  cursor: pointer;
+}
+
+/* Ensure the table dynamically adapts to the content */
+.custom-table td,
+.custom-table th {
+  min-width: 150px; /* Minimum column width */
+  max-width: 300px; /* Maximum column width */
+  word-wrap: break-word; /* Break long words */
+  text-align: center; /* Center-align content */
+}
+
+/* Styling for no data */
+.table-no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin: 20px;
+  font-style: italic;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .custom-table {
+    font-size: 12px;
+    table-layout: auto; /* Allow dynamic column sizing on small screens */
+  }
+
+  .custom-table-header,
+  .custom-table-cell {
+    padding: 8px 10px;
+  }
+}

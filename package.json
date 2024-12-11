@@ -1,0 +1,30 @@
+{
+  "name": "payment-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^1.7.8",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-csv": "^2.2.2",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-papaparse": "^4.4.0",
+    "react-recaptcha": "^2.3.10",
+    "react-simple-captcha": "^9.3.1",
+    "react-toastify": "^10.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}

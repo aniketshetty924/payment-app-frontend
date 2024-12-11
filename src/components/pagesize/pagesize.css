@@ -1,0 +1,27 @@
+.page-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.page-size label {
+  font-weight: bold;
+  color: #555;
+}
+
+.page-size select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  color: grey;
+}
+
+.page-size select:focus {
+  border-color: #008080;
+  outline: none;
+}
