@@ -88,7 +88,7 @@ const ReportsPage = () => {
   // Paginate the data
   const paginatedData = filteredData.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   const handlePageChange = (page) => {
@@ -278,7 +278,7 @@ const ReportsPage = () => {
 
                 {Array.from(
                   { length: Math.ceil(totalRecords / pageSize) },
-                  (_, i) => i + 1
+                  (_, i) => i + 1,
                 ).map((page) => (
                   <button
                     key={page}
@@ -298,7 +298,7 @@ const ReportsPage = () => {
                     handlePageChange(
                       currentPage === Math.ceil(totalRecords / pageSize)
                         ? 1
-                        : currentPage + 1
+                        : currentPage + 1,
                     )
                   }
                   className="px-4 py-2 text-gray-500 bg-gray-100 border border-gray-300 rounded-full shadow-md hover:bg-gray-200"

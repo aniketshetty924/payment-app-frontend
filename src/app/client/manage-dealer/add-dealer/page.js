@@ -111,7 +111,7 @@ const AddDealer = () => {
 
   const paginatedData = filteredDealers.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (

@@ -33,7 +33,7 @@ const PayDealers = () => {
   useEffect(() => {
     const fetchDealers = async () => {
       const paymentRequests = await getAllDealersPaymentRequestByMonth(
-        `${selectedMonth}-${selectedYear}`
+        `${selectedMonth}-${selectedYear}`,
       );
       const response = await getAllDealers();
 
@@ -42,12 +42,12 @@ const PayDealers = () => {
         const { data: processed } = paymentRequests;
 
         const processedDealerIds = processed.map(
-          (dealer) => dealer.recipientId
+          (dealer) => dealer.recipientId,
         );
         setProcessedDealers(processedDealerIds);
 
         const remainingDealers = allDealers.filter(
-          (dealer) => !processedDealerIds.includes(dealer.accountId)
+          (dealer) => !processedDealerIds.includes(dealer.accountId),
         );
 
         setDealers(remainingDealers);
@@ -83,7 +83,7 @@ const PayDealers = () => {
     setSelectedDealers((prevSelected) =>
       prevSelected.includes(dealerId)
         ? prevSelected.filter((id) => id !== dealerId)
-        : [...prevSelected, dealerId]
+        : [...prevSelected, dealerId],
     );
   };
 
@@ -171,7 +171,7 @@ const PayDealers = () => {
 
   const paginatedData = filteredDealers.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   const isAllSelected = selectedDealers.length === filteredDealers.length;

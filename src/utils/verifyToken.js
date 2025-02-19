@@ -16,7 +16,7 @@ export const verifyToken = async () => {
         headers: {
           auth: token,
         },
-      }
+      },
     );
 
     return response.data;

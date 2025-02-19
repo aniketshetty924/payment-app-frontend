@@ -43,7 +43,7 @@ const AddEmployee = () => {
       const response = await getAllEmployees();
       if (response) {
         const sortedEmployees = response.data.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt) // Sort by `createdAt` descending
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt), // Sort by `createdAt` descending
         );
         setEmployees(sortedEmployees);
         setFilteredEmployees(sortedEmployees); // Initially set all employees as filtered employees
@@ -130,7 +130,7 @@ const AddEmployee = () => {
 
   const paginatedData = filteredEmployees.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   // Convert the employees data into CSV format
@@ -292,10 +292,10 @@ const AddEmployee = () => {
               {step === 1
                 ? "Employee Basic Information"
                 : step === 2
-                ? "Employee Contact Information"
-                : step === 3
-                ? "Employee Bank Account Information"
-                : "Employee Job Information"}
+                  ? "Employee Contact Information"
+                  : step === 3
+                    ? "Employee Bank Account Information"
+                    : "Employee Job Information"}
             </h3>
 
             {/* Employee Information Steps */}

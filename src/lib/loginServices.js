@@ -23,7 +23,7 @@ export const handleLogin = async (e, loginData) => {
 
     const payloadBase64 = token.split(".")[1];
     const payloadJson = JSON.parse(
-      atob(payloadBase64.replace(/-/g, "+").replace(/_/g, "/"))
+      atob(payloadBase64.replace(/-/g, "+").replace(/_/g, "/")),
     );
 
     const isAdmin = payloadJson.isAdmin;

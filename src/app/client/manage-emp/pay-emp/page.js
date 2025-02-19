@@ -31,7 +31,7 @@ const PayEmployees = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       const paymentRequests = await getAllEmployeesPaymentRequestsPerMonth(
-        `${selectedMonth}-${selectedYear}`
+        `${selectedMonth}-${selectedYear}`,
       );
       const response = await getAllEmployees();
 
@@ -43,7 +43,7 @@ const PayEmployees = () => {
         setProcessedEmployees(processedEmployeeIds);
 
         const remainingEmployees = allEmployees.filter(
-          (emp) => !processedEmployeeIds.includes(emp.accountId)
+          (emp) => !processedEmployeeIds.includes(emp.accountId),
         );
 
         setEmployees(remainingEmployees); // Set all employees
@@ -79,7 +79,7 @@ const PayEmployees = () => {
     setSelectedEmployees((prevSelected) =>
       prevSelected.includes(employeeId)
         ? prevSelected.filter((id) => id !== employeeId)
-        : [...prevSelected, employeeId]
+        : [...prevSelected, employeeId],
     );
   };
 
@@ -122,7 +122,7 @@ const PayEmployees = () => {
 
       // Add processed employees to the list
       const processedEmployeeIds = paymentDetails.map(
-        (payment) => payment.recipientId
+        (payment) => payment.recipientId,
       );
       setProcessedEmployees((prev) => [...prev, ...processedEmployeeIds]);
     } catch (error) {
@@ -136,7 +136,7 @@ const PayEmployees = () => {
 
   const paginatedData = filteredEmployees.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   const isAllSelected = selectedEmployees.length === filteredEmployees.length;

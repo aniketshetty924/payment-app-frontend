@@ -1,61 +1,96 @@
 "use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { Menu, X } from "lucide-react";
 
 const AdminNavbar = () => {
-  const handleBack = () => {
-    window.history.back(); // Go back to the previous page
-  };
+  const router = useRouter();
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleForward = () => {
-    window.history.forward(); // Go forward to the next page
-  };
   const handleLogout = () => {
-    // Remove token from localStorage (or clear other user-related data)
     localStorage.removeItem("token");
     Cookies.remove("token");
-
-    // Redirect to the home page
-    router.push("/");
+    router.push("/login");
   };
 
   return (
-    <nav className="bg-indigo-600 text-white py-4 px-6 shadow-md">
-      <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-        {/* Back and Forward Buttons */}
-        <div className="flex space-x-4">
-          <button
-            onClick={handleBack}
-            className="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg"
-          >
-            Back
-          </button>
-          <button
-            onClick={handleForward}
-            className="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded-lg"
-          >
-            Forward
-          </button>
-        </div>
+    <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+      <div className="max-w-screen-xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
+        <Link href="/" className="text-2xl font-bold text-indigo-600">
+          PayFlow
+        </Link>
 
-        {/* PayFlow Logo centered */}
-        <div className="flex-1 text-center">
-          <Link href="/" className="text-2xl font-bold">
-            PayFlow
-          </Link>
-        </div>
-
-        {/* Navigation Links (Logout) */}
-        <div className="space-x-6">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
           <Link
+            href="/dashboard"
+            className="text-gray-700 hover:text-indigo-600"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/settings"
+            className="text-gray-700 hover:text-indigo-600"
+          >
+            Settings
+          </Link>
+          {/* Profile Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="bg-gray-100 px-4 py-2 rounded-full text-gray-700 hover:bg-gray-200"
+            >
+              Profile
+            </button>
+            {menuOpen && (
+              <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg w-48">
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-gray-700"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="md:hidden bg-white shadow-md p-4 flex flex-col space-y-4">
+          <Link
+            href="/dashboard"
+            className="text-gray-700 hover:text-indigo-600"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/settings"
+            className="text-gray-700 hover:text-indigo-600"
+          >
+            Settings
+          </Link>
+          <button
             onClick={handleLogout}
-            href="/login"
-            className="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg"
+            className="text-gray-700 hover:text-red-600 text-left"
           >
             Logout
-          </Link>
+          </button>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

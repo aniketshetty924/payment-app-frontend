@@ -44,7 +44,7 @@ export const createClient = async (clientData) => {
   } catch (error) {
     console.error(
       "Error creating client:",
-      error.response ? error.response.data : error.message
+      error.response ? error.response.data : error.message,
     );
     return false;
   }
@@ -67,7 +67,7 @@ export const updateClientFormStatus = async (username, status, adminNote) => {
         headers: {
           auth: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     console.log("Client form status updated successfully", response.data);
@@ -75,10 +75,10 @@ export const updateClientFormStatus = async (username, status, adminNote) => {
   } catch (error) {
     console.error(
       "Error updating client form status:",
-      error.response ? error.response.data : error.message
+      error.response ? error.response.data : error.message,
     );
     throw new Error(
-      error.response ? error.response.data.message : error.message
+      error.response ? error.response.data.message : error.message,
     );
   }
 };
@@ -185,7 +185,7 @@ export const processPayments = async (clientId, paymentsToProcess) => {
         headers: {
           auth: `Bearer ${token}`,
         },
-      }
+      },
     );
 
     console.log("API Response: ", response); // Log the response
@@ -236,7 +236,7 @@ export const updateClientById = async (clientId, parameter, value) => {
         headers: {
           auth: `Bearer ${token}`,
         },
-      }
+      },
     );
     return response;
   } catch (error) {

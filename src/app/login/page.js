@@ -5,12 +5,11 @@ import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
-} from "react-simple-captcha"; // Import react-simple-captcha
+} from "react-simple-captcha";
 import { handleLogin } from "@/lib/loginServices";
-
-// Import react-toastify
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import the styles
+import "react-toastify/dist/ReactToastify.css";
+import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -20,22 +19,14 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [captchaError, setCaptchaError] = useState(false);
-
-  // Directly call useRouter here
   const router = useRouter();
 
   useEffect(() => {
-    loadCaptchaEnginge(6); // Initialize captcha engine
+    loadCaptchaEnginge(6);
   }, []);
-
-  const handleCaptcha = (value) => {
-    setCaptchaValue(value);
-    setCaptchaError(false);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setErrors({});
     setLoginError("");
 
@@ -54,162 +45,87 @@ const Login = () => {
       return;
     }
 
-    const loginData = { username, password };
-
     try {
-      const result = await handleLogin(e, loginData);
-
+      const result = await handleLogin(e, { username, password });
       if (result) {
         const { isAdmin, client } = result;
-        console.log("IS ADMIN : ", isAdmin);
-        if (isAdmin) {
-          console.log("Redirecting to Admin Dashboard...");
-          router.push(`/admin`);
-          // Show success toast on successful login
-          toast.success("Login successful! Redirecting to Admin Dashboard...");
-        } else {
-          console.log("Redirecting to Client Dashboard...");
-          router.push(`/client`);
-          // Show success toast on successful login
-          toast.success("Login successful! Redirecting to Client Dashboard...");
-        }
+        toast.success("Login successful! Redirecting...");
+        router.push(
+          isAdmin
+            ? `/admin?username=${client.username}`
+            : `/client?username=${client.username}`,
+        );
       } else {
-        setLoginError("Invalid credentials or server error. Please try again.");
-        // Show error toast if login failed
         toast.error("Invalid credentials or server error. Please try again.");
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      setLoginError("An error occurred. Please try again.");
-      // Show error toast if there is an error during login
       toast.error("An error occurred. Please try again.");
     }
   };
 
-  const handleSignupRoute = () => {
-    router.push("/sign-up");
-  };
-
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-      <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-        {/* Branding */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-extrabold text-gray-800">PayFlow</h1>
-          <p className="text-lg text-gray-600 mt-2">
-            Manage Your Payments with Ease
-          </p>
-        </div>
-
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-800 to-purple-700">
+      <div className="bg-white p-10 rounded-xl shadow-2xl w-full max-w-md border border-gray-200">
+        <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-4">
+          Welcome to PayFlow
+        </h2>
+        <p className="text-gray-500 text-center mb-6">
+          Securely manage your payments
+        </p>
         <form onSubmit={handleSubmit}>
-          {/* Username Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="username"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Username
-            </label>
+          <div className="mb-4">
+            <label className="block text-gray-700">Username</label>
             <input
               type="text"
-              id="username"
-              name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-gray-900 bg-white"
+              className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-100"
               placeholder="Enter your username"
             />
-            {errors.username && (
-              <p className="text-sm text-red-500 mt-1">{errors.username}</p>
-            )}
           </div>
-
-          {/* Password Field */}
-          <div className="mb-6 relative">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
+          <div className="mb-4 relative">
+            <label className="block text-gray-700">Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-gray-900 bg-white"
+              className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-100"
               placeholder="Enter your password"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-10 text-sm text-gray-600 focus:outline-none"
+              className="absolute right-4 top-10 text-gray-500"
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? <EyeOff size={24} /> : <Eye size={24} />}
             </button>
-            {errors.password && (
-              <p className="text-sm text-red-500 mt-1">{errors.password}</p>
-            )}
           </div>
-
-          {/* CAPTCHA Section */}
-          <div className="mb-6">
-            <label
-              htmlFor="captcha"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Enter CAPTCHA
-            </label>
+          <div className="mb-4">
+            <label className="block text-gray-700">Enter CAPTCHA</label>
             <LoadCanvasTemplate />
             <input
               type="text"
-              id="captcha"
-              className="mt-2 p-3 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600 text-gray-900 bg-white"
               value={captchaValue}
-              onChange={(e) => handleCaptcha(e.target.value)}
-              placeholder="Enter the captcha"
+              onChange={(e) => setCaptchaValue(e.target.value)}
+              className="w-full p-4 border rounded-lg focus:ring-2 focus:ring-blue-500 bg-gray-100"
+              placeholder="Enter CAPTCHA"
             />
-            {captchaError && (
-              <p className="text-sm text-red-500 mt-1">
-                Captcha is incorrect. Please try again.
-              </p>
-            )}
-            {errors.captcha && (
-              <p className="text-sm text-red-500 mt-1">{errors.captcha}</p>
-            )}
           </div>
-
-          {/* Error Message from backend */}
-          {loginError && (
-            <div className="text-sm text-red-500 mb-4">{loginError}</div>
-          )}
-
-          {/* Submit Button */}
+          {loginError && <p className="text-red-500 text-sm">{loginError}</p>}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg mt-4 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition ease-in-out duration-300"
+            className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md"
           >
             Login
           </button>
         </form>
-
-        {/* Updated Link with Visible Color */}
-        <div className="text-center mt-6 text-sm">
-          <p className="text-black">
-            Don’t have an account?{" "}
-            <a
-              href="#"
-              className="text-indigo-600 hover:underline"
-              onClick={handleSignupRoute}
-            >
-              Sign up
-            </a>
-          </p>
-        </div>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Don't have an account?{" "}
+          <a href="#" className="text-blue-600 hover:underline">
+            Sign up
+          </a>
+        </p>
       </div>
-
-      {/* Toast Container */}
       <ToastContainer />
     </div>
   );

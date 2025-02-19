@@ -57,7 +57,7 @@ const AddClient = () => {
       await updateClientFormStatus(
         selectedUser.username,
         "rejected",
-        adminNote
+        adminNote,
       );
       setLoading(false);
       closeRejectionModal();

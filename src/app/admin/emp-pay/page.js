@@ -58,7 +58,7 @@ const EmployeePayments = () => {
       const filtered = clients.filter((client) =>
         client.client.clientName
           .toLowerCase()
-          .includes(clientNameFilter.toLowerCase())
+          .includes(clientNameFilter.toLowerCase()),
       );
       setFilteredClients(filtered);
     } else {
@@ -80,7 +80,7 @@ const EmployeePayments = () => {
     setProcessingPayments(true);
     const totalAmount = selectedClient.requests.reduce(
       (sum, request) => sum + parseFloat(request.amount),
-      0
+      0,
     );
     const clientAccountId = selectedClient.client.accountId;
     try {
@@ -103,7 +103,7 @@ const EmployeePayments = () => {
       // Proceed with payment processing
       const paymentResponse = await processPayments(
         selectedClient.client.id,
-        paymentsToProcess
+        paymentsToProcess,
       );
 
       console.log("Payment Response: ", paymentResponse);
@@ -114,8 +114,8 @@ const EmployeePayments = () => {
       // Remove the client from the clients list after successful payment processing
       setClients((prevClients) =>
         prevClients.filter(
-          (client) => client.client.id !== selectedClient.client.id
-        )
+          (client) => client.client.id !== selectedClient.client.id,
+        ),
       );
     } catch (error) {
       console.error("Error during payment processing:", error);

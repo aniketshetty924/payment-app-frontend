@@ -12,7 +12,7 @@ export const photoUrlService = async (photo) => {
       {
         method: "POST",
         body: formData,
-      }
+      },
     );
 
     const data = await response.json();
@@ -24,7 +24,7 @@ export const photoUrlService = async (photo) => {
   } catch (error) {
     console.error("Error uploading photo:", error);
     throw new Error(
-      "An error occurred while uploading the photo. Please try again."
+      "An error occurred while uploading the photo. Please try again.",
     );
   }
 };

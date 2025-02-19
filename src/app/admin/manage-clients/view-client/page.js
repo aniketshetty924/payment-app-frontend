@@ -140,7 +140,7 @@ const ViewClients = () => {
       }
 
       const updatedClients = filteredClients.map((client) =>
-        client.id === selectedClient.id ? { ...client, ...clientData } : client
+        client.id === selectedClient.id ? { ...client, ...clientData } : client,
       );
 
       setFilteredClients(updatedClients);
@@ -168,7 +168,7 @@ const ViewClients = () => {
       setIsLoading(true);
       await deleteClientById(clientToDelete.id);
       const remainingClients = filteredClients.filter(
-        (client) => client.id !== clientToDelete.id
+        (client) => client.id !== clientToDelete.id,
       );
       setFilteredClients(remainingClients);
       setTotalClients(remainingClients.length);
@@ -197,7 +197,7 @@ const ViewClients = () => {
 
   const paginatedData = filteredClients.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   return (

@@ -139,7 +139,7 @@ const SignUp = () => {
 
       // Show an alert message (or handle the error as needed)
       alert(
-        "There was an error submitting your registration. Please try again."
+        "There was an error submitting your registration. Please try again.",
       );
     }
   };

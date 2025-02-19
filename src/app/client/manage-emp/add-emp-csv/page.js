@@ -28,7 +28,7 @@ const AddEmployeeCsv = () => {
       const response = await getAllEmployees();
       if (response) {
         const sortedEmployees = response.data.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt) // Sort by `createdAt` descending
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt), // Sort by `createdAt` descending
         );
         setEmployees(sortedEmployees);
         setFilteredEmployees(sortedEmployees); // Initially set all employees as filtered employees
@@ -111,7 +111,7 @@ const AddEmployeeCsv = () => {
 
   const paginatedData = filteredEmployees.slice(
     (currentPage - 1) * pageSize,
-    currentPage * pageSize
+    currentPage * pageSize,
   );
 
   // Convert employees data into CSV format
